@@ -4,8 +4,8 @@ import { FlattenFilterPaths, FlattenSortType } from './flatten'
 declare type SortDirectionString =
   | SortDirection
   | {
-    $meta: 'textScore' | 'indexKey'
-  }
+      $meta: 'textScore' | 'indexKey'
+    }
 
 export declare type SortDirection =
   | 1
@@ -19,8 +19,8 @@ export declare type TsSort<TSchema extends Document> = {
   [Property in FlattenFilterPaths<TSchema>]?: NonNullable<
     FlattenSortType<TSchema, Property>
   > extends number | boolean | Date | ObjectId
-  ? SortDirection
-  : NonNullable<FlattenSortType<TSchema, Property>> extends string
-  ? SortDirectionString
-  : never
+    ? SortDirection
+    : NonNullable<FlattenSortType<TSchema, Property>> extends string
+    ? SortDirectionString
+    : never
 }
